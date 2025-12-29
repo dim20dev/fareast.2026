@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Far East Vrysoules - Authentic Chinese & Sushi Cuisine</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Far East Vrysoules offers authentic UK-style Chinese takeaway and sushi in Vrysoules, Cyprus. We deliver locally to Avgorou and Frenaros." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --primary:#7f0e1f;
+      --primary-dark:#660b17;
+      --primary-light:rgba(127, 14, 31, 0.1);
+      --bg:#fafafa;
+      --card:#fff;
+      --radius:12px;
+      --shadow:0 14px 35px -10px rgba(0,0,0,0.1);
+      --text:#1f1f33;
+      --accent:#ffb400;
+      --sushi-accent:#2a7f62;
+      font-family: 'Franklin Gothic Medium','Arial Narrow', Arial, sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height:100vh;
+      padding-bottom:80px;
+      scroll-behavior: smooth;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration:none; color: inherit; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+    strong { font-weight: 700; }
+
+    /* Navbar */
+    .navbar {
+      position:sticky;
+      top:0;
+      background: var(--primary);
+      display:flex;
+      align-items:center;
+      height:80px;
+      width:100%;
+      z-index:1000;
+      box-shadow:0 2px 10px rgba(0,0,0,0.2);
+    }
+    .navbar-container {
+      max-width:1400px;
+      width:100%;
+      margin:0 auto;
+      padding:0 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+    }
+    .logo-container {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .logo { 
+      height:60px; 
+      width: auto;
+      object-fit:contain; 
+      transition: transform 0.3s;
+      border-radius: 8px;
+    }
+    .logo:hover { transform: scale(1.05); }
+    .logo-text {
+      display: none;
+    }
+    .nav-links {
+      list-style:none;
+      display:flex;
+      gap:15px;
+      flex:1;
+      margin-left:30px;
+    }
+    .nav-links a {
+      color: whitesmoke;
+      font-size:16px;
+      padding:10px 15px;
+      border-radius:22px;
+      font-weight:600;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { 
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    .actions {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .btn {
+      padding:10px 18px;
+      border-radius:8px;
+      font-weight:700;
+      font-size:0.9rem;
+      border:none;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#fff;
+      color: var(--primary);
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .btn.secondary {
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.7);
+      color: whitesmoke;
+    }
+    .btn.secondary:hover {
+      background:rgba(255,255,255,0.1);
+    }
+    .lang-switch { display:flex; gap:6px; }
+    .lang-switch button {
+      background:none;
+      border:1px solid rgba(255,255,255,0.5);
+      padding:6px 12px;
+      border-radius:6px;
+      cursor:pointer;
+      color: whitesmoke;
+      font-size:0.8rem;
+      font-weight:600;
+      transition: all .2s;
+    }
+    .lang-switch button:hover {
+      background:rgba(255,255,255,0.1);
+    }
+    .lang-switch button.active {
+      background:#fff;
+      color: var(--primary);
+      border-color:#fff;
+    }
+
+    /* Social icons */
+    .socials {
+      display:flex;
+      gap:10px;
+      margin-left:10px;
+    }
+    .socials a {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      background:#fff;
+      color: var(--primary);
+      font-size:14px;
+      transition: all 0.2s;
+    }
+    .socials a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Sections */
+    .container { 
+      max-width:1300px; 
+      margin:0 auto; 
+      padding:1.5rem 20px 3rem;
+    }
+    section[id] {
+      scroll-margin-top: 80px;
+    }
+    .hero {
+      margin:1.5rem 0 2rem;
+      background:#fff;
+      border-radius:16px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:1.5rem;
+      padding:2rem;
+      box-shadow: var(--shadow);
+    }
+    .hero img {
+      flex:1 1 350px;
+      border-radius:12px;
+      max-height:320px;
+      object-fit:cover;
+      min-height:250px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width:100%;
+    }
+    .hero-content {
+      flex:2 1 400px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:12px;
+    }
+    .badge {
+      background: var(--accent);
+      padding:8px 16px;
+      border-radius:999px;
+      font-size:0.75rem;
+      font-weight:700;
+      display:inline-block;
+      margin-bottom:4px;
+      width: fit-content;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 { 
+      font-size:2.2rem; 
+      margin:0;
+      line-height:1.3;
+    }
+    h2 {
+      font-size:1.8rem;
+      margin-bottom:16px;
+      position:relative;
+      display:inline-block;
+    }
+    h2:after {
+      content:'';
+      position:absolute;
+      bottom:-6px;
+      left:0;
+      width:60px;
+      height:3px;
+      background:var(--primary);
+      border-radius:3px;
+    }
+    .sushi-section h2:after {
+      background:var(--sushi-accent);
+    }
+    p { 
+      margin:0; 
+      line-height:1.6;
+      font-size:1rem;
+    }
+    .hero p {
+      font-size:1.1rem;
+      max-width:700px;
+    }
+
+    /* Menu */
+    .section-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:20px;
+    }
+    .menu-tabs {
+      display:flex;
+      gap:10px;
+      margin-bottom:20px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+      scrollbar-width: thin;
+    }
+    .menu-tabs::-webkit-scrollbar {
+      height: 5px;
+    }
+    .menu-tabs::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 10px;
+    }
+    .menu-tab {
+      padding:8px 16px;
+      border-radius:8px;
+      background:var(--primary-light);
+      color:var(--primary);
+      font-weight:600;
+      cursor:pointer;
+      transition:all 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .menu-tab.active {
+      background:var(--primary);
+      color:white;
+    }
+    .menu-tab.sushi-tab {
+      color:var(--sushi-accent);
+      background:rgba(42, 127, 98, 0.1);
+    }
+    .menu-tab.sushi-tab.active {
+      background:var(--sushi-accent);
+      color:white;
+    }
+    
+    /* Category Buttons */
+    .menu-category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .menu-category-button {
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      font-size: 0.9rem;
+    }
+    .menu-category-button.active {
+      background: var(--primary);
+      color: white;
+    }
+    .menu-category-button.sushi-button {
+      color: var(--sushi-accent);
+      background: rgba(42, 127, 98, 0.1);
+    }
+    .menu-category-button.sushi-button.active {
+      background: var(--sushi-accent);
+      color: white;
+    }
+    
+    .menu-category {
+      margin: 2rem 0;
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      display: none;
+    }
+    .menu-category.active {
+      display: block;
+    }
+    .menu-category-title {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-light);
+    }
+    .sushi-category .menu-category-title {
+      color: var(--sushi-accent);
+      border-bottom-color: rgba(42, 127, 98, 0.1);
+    }
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .menu-item {
+      display: flex;
+      gap: 1rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1rem;
+    }
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+    .menu-item-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      flex-shrink: 0;
+    }
+    .menu-item-content {
+      flex: 1;
+    }
+    .menu-item-title {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .menu-item-desc {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+    .menu-item-price {
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+    .menu-item-number {
+      color: var(--primary);
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+    .sushi-item .menu-item-title,
+    .sushi-item .menu-item-price {
+      color: var(--sushi-accent);
+    }
+    .sushi-item .menu-item-number {
+      color: var(--sushi-accent);
+    }
+    
+    /* Show More/Less Button */
+    .show-more-btn {
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .show-more-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+    .sushi-category .show-more-btn {
+      background: rgba(42, 127, 98, 0.1);
+      color: var(--sushi-accent);
+    }
+    .sushi-category .show-more-btn:hover {
+      background: var(--sushi-accent);
+      color: white;
+    }
+    
+    /* Hidden items */
+    .hidden-item {
+      display: none;
+    }
+    
+    /* Other content */
+    .about, .contact, .location {
+      background:#fff;
+      padding:2rem;
+      border-radius:16px;
+      box-shadow: var(--shadow);
+      margin:2rem 0;
+      border:1px solid rgba(0,0,0,0.05);
+    }
+    .field { margin-bottom:20px; }
+    .field label { 
+      display:block; 
+      font-weight:600; 
+      margin-bottom:8px;
+      font-size:0.95rem;
+    }
+    .field input, .field textarea {
+      width:100%;
+      padding:14px;
+      border:1px solid #ddd;
+      border-radius:8px;
+      font-size:1rem;
+      resize:vertical;
+      transition: all 0.2s;
+      font-family:inherit;
+    }
+    .field input:focus, 
+    .field textarea:focus {
+      outline:none;
+      border-color: var(--primary);
+      box-shadow:0 0 0 3px rgba(127, 14, 31, 0.1);
+    }
+
+    /* Bottom nav */
+    .bottom-nav {
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      background:#fff;
+      display:none;
+      padding:10px 16px;
+      gap:8px;
+      border-top:1px solid rgba(0,0,0,0.08);
+      z-index:200;
+      justify-content:space-around;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+      font-size:0.7rem;
+    }
+    .bottom-nav a {
+      flex:1;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:6px;
+      padding:8px 4px;
+      border-radius:8px;
+      color: var(--primary);
+      font-weight:600;
+      transition: all 0.2s;
+    }
+    .bottom-nav a.active {
+      background: var(--primary-light);
+    }
+    .bottom-nav a:hover {
+      background: var(--primary-light);
+    }
+    .bottom-nav .icon { 
+      font-size:1.4rem;
+      transition: transform 0.2s;
+    }
+    .bottom-nav a:hover .icon {
+      transform: translateY(-3px);
+    }
+
+    /* Map */
+    .map-container {
+      width:100%;
+      aspect-ratio:16/9;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 8px 20px rgba(0,0,0,0.1);
+      border:1px solid rgba(0,0,0,0.1);
+    }
+    .map-container iframe {
+      width:100%;
+      height:100%;
+      border:none;
+    }
+
+    /* Other */
+    .photo-credit { 
+      font-size:0.6rem; 
+      color:#666; 
+      margin-top:6px;
+    }
+    .divider { 
+      height:1px; 
+      background: #eee; 
+      margin:1.5rem 0;
+    }
+    .text-highlight {
+      color: var(--primary);
+      font-weight:600;
+    }
+    .hidden {
+      display:none;
+    }
+
+    /* Loading animation */
+    .loader {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Toast notification */
+    .toast {
+      position:fixed;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      background:var(--primary);
+      color:white;
+      padding:12px 24px;
+      border-radius:8px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+      z-index:1000;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      opacity:0;
+      transition:opacity 0.3s;
+    }
+    .toast.show {
+      opacity:1;
+    }
+    .toast i {
+      font-size:1.2rem;
+    }
+
+    @media (max-width:1200px){ 
+      .navbar-container {
+        padding:0 16px;
+      }
+    }
+    @media (max-width:1000px){ 
+      .nav-links{display:none;} 
+      .logo { height:70px; }
+      .hero img {
+        max-height:280px;
+      }
+      .socials a {
+        width:30px;
+        height:30px;
+        font-size:12px;
+      }
+      .btn {
+        padding:8px 14px;
+        font-size:0.85rem;
+      }
+      .actions .btn:not(.lang-switch button) {
+        display: none;
+      }
+      
+      .mobile-nav-title {
+        display: block;
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-top: 2px;
+      }
+    }
+    @media (max-width:850px){ 
+      .bottom-nav{display:flex;} 
+      section[id] {
+        scroll-margin-top: 80px;
+      }
+      .hero {
+        padding:1.5rem;
+      }
+      .menu-items {
+        grid-template-columns: 1fr;
+      }
+      .menu-item-img {
+        width: 100%;
+        height: 150px;
+      }
+      .menu-item {
+        flex-direction: column;
+      }
+      .menu-category {
+        padding: 1rem;
+      }
+      .menu-category-title {
+        font-size: 1.3rem;
+      }
+      .menu-item-title {
+        flex-direction: column;
+        gap: 5px;
+      }
+      .menu-item-price {
+        margin-left: auto;
+      }
+      .menu-category-buttons {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 10px;
+        scrollbar-width: thin;
+      }
+      .menu-category-buttons::-webkit-scrollbar {
+        height: 5px;
+      }
+      .menu-category-buttons::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 10px;
+      }
+      .menu-category-button {
+        white-space: nowrap;
+      }
+    }
+    @media (max-width:600px) {
+      h1 {
+        font-size:1.8rem;
+      }
+      h2 {
+        font-size:1.5rem;
+      }
+      .hero {
+        padding:1.2rem;
+        margin:1rem 0;
+      }
+      .hero img {
+        min-height:200px;
+      }
+      .container {
+        padding:1rem 16px 2rem;
+      }
+      .about, .contact, .location {
+        padding:1.5rem;
+      }
+      .logo {
+        height: 60px;
+      }
+      .socials {
+        margin-left: 0;
+      }
+      .lang-switch {
+        margin-right: 5px;
+      }
+      .menu-category-title {
+        font-size: 1.3rem;
+      }
+      .btn {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+      }
+    }
+    @media (max-width:400px) {
+      .hero-content {
+        padding-top:0;
+      }
+      .btn {
+        padding:8px 12px;
+        font-size:0.8rem;
+      }
+      .logo {
+        height: 55px;
+      }
+      .lang-switch button {
+        padding:4px 8px;
+        font-size:0.7rem;
+      }
+      .bottom-nav .text {
+        font-size: 0.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" aria-label="Main Navigation">
+    <div class="navbar-container">
+      <div class="logo-container">
+        <img src="fe.png" alt="Far East Vrysoules Logo" class="logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 100 100&quot; fill=&quot;%237f0e1f&quot;><rect width=&quot;100&quot; height=&quot;100&quot; fill=&quot;white&quot;/><text x=&quot;50&quot; y=&quot;60&quot; font-family=&quot;Arial&quot; font-size=&quot;60&quot; text-anchor=&quot;middle&quot; fill=&quot;%237f0e1f&quot;>FE</text></svg>';" />
+        <div class="logo-text">
+          <div style="font-weight:700; font-size:1.1rem;" data-i18n="title">Far East Vrysoules</div>
+          <div class="mobile-nav-title" data-i18n="location">Vrysoules, Cyprus</div>
+        </div>
+      </div>
+
+      <ul class="nav-links" aria-label="Desktop menu">
+        <li><a href="#home" class="nav-link" data-i18n="home">Home</a></li>
+        <li><a href="#about" class="nav-link" data-i18n="about">About</a></li>
+        <li><a href="#menu" class="nav-link" data-i18n="menu">Menu</a></li>
+        <li><a href="#contact" class="nav-link" data-i18n="contact">Contact</a></li>
+        <li><a href="#location" class="nav-link" data-i18n="location">Location</a></li>
+      </ul>
+
+      <div class="actions">
+        <a class="btn" href="tel:+35723962220" aria-label="Call us">
+          <i class="fas fa-phone-alt"></i> <span data-i18n="call_us_btn">Call Us</span>
+        </a>
+        <div class="lang-switch" aria-label="Language switcher">
+          <button id="btn-en" class="active" aria-pressed="true">EN</button>
+          <button id="btn-el" aria-pressed="false">ΕΛ</button>
+        </div>
+        <div class="socials" aria-label="Social media links">
+          <a href="https://www.instagram.com/far_east_chinese/" target="_blank" aria-label="Instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61553933070480" target="_blank" aria-label="Facebook" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.tiktok.com/@far_east_chinese" target="_blank" aria-label="TikTok" title="TikTok">
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HOME / HERO -->
+  <main class="container">
+    <section id="home" class="hero" aria-label="Home hero">
+      <img src="fpic.jpg" alt="Restaurant interior" />
+      <div class="hero-content">
+        <div class="badge" data-i18n="welcome">Welcome</div>
+        <h1 data-i18n="headline">Taste the Far East in Vrysoules</h1>
+        <p>
+          <strong class="text-highlight">The Far East</strong> brings authentic UK-style Chinese takeaway and fresh sushi to your doorstep! 
+          Explore our extensive menu and join us on a culinary adventure. Order now for a taste of tradition!
+          <br><br>
+          We deliver locally and to Avgorou and Frenaros with a minimum order of €25.
+          <br><br>
+          <i class="fas fa-camera"></i> Tag us in your foodie moments!
+        </p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
+          <a class="btn" href="#menu" data-i18n="see_menu">
+            <i class="fas fa-utensils"></i> See Menu
+          </a>
+          <a class="btn secondary" href="#location" data-i18n="find_us">
+            <i class="fas fa-map-marker-alt"></i> Find Us
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about" aria-label="About">
+      <h2 data-i18n="about">About Us</h2>
+      <div>
+        <p>
+          At <strong class="text-highlight">The Far East</strong>, we bring the authentic flavors of UK-style Chinese cuisine and fresh sushi to the heart of Cyprus. 
+          Our chefs craft each dish with premium ingredients and traditional techniques, offering you 
+          a true taste of the Far East right here in Vrysoules.
+        </p>
+        <div class="divider"></div>
+        <p>
+          <strong>Opening Hours:</strong><br>
+          Tuesday - Sunday: 17:00 - 22:00<br>
+          <strong>Note:</strong> We are closed on Mondays.
+        </p>
+        <div class="divider"></div>
+        <p>
+          <strong>Delivery Areas:</strong><br>
+          Vrysoules, Avgorou, Frenaros, and surrounding areas<br>
+          Minimum delivery order: €25
+        </p>
+      </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section id="menu" aria-label="Menu">
+      <div class="section-header">
+        <h2 data-i18n="our_menu">Our Menu</h2>
+        <div class="translate-note" data-i18n="note_translate">
+          <i class="fas fa-language"></i> Available in English & Greek
+        </div>
+      </div>
+      
+      <div class="menu-tabs">
+        <div class="menu-tab active" data-tab="chinese">Chinese Menu</div>
+        <div class="menu-tab sushi-tab" data-tab="sushi">Sushi Menu</div>
+      </div>
+      
+      <!-- Chinese Menu -->
+      <div class="menu-section" id="chinese-menu">
+        <!-- Category Buttons -->
+        <div class="menu-category-buttons" id="chinese-category-buttons">
+          <button class="menu-category-button active" data-category="starters">Starters</button>
+          <button class="menu-category-button" data-category="soups">Soups</button>
+          <button class="menu-category-button" data-category="tofu-vegan">Tofu & Vegan</button>
+          <button class="menu-category-button" data-category="main-dishes">Main Dishes</button>
+          <button class="menu-category-button" data-category="noodles-rice">Noodles & Rice</button>
+          <button class="menu-category-button" data-category="sides">Side Dishes</button>
+        </div>
+        
+        <!-- Starters -->
+        <div class="menu-category active" id="starters">
+          <h3 class="menu-category-title" data-i18n="starters">Starters</h3>
+          <div class="menu-items">
+            <!-- First 3 items visible by default -->
+            <div class="menu-item">
+              <img src="vegetb-sr.jpg" alt="Vegetable Spring Rolls" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">1.</span> <span data-i18n="dish1">Vegetable Spring Rolls</span></span>
+                  <span class="menu-item-price">€3.00</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish1_desc">Served with Sweet & Sour sauce</div>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=600&q=80" alt="Japanese Dumplings" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">2.</span> <span data-i18n="dish2">Japanese Dumplings</span></span>
+                  <span class="menu-item-price">€5.00-€6.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish2_desc">Deep fried or steamed (Vegetable/Chicken/Prawn)</div>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=600&q=80" alt="Aromatic Duck" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">3.</span> <span data-i18n="dish3">Aromatic Duck 1/4</span></span>
+                  <span class="menu-item-price">€11.00</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish3_desc">1/4 Duck, Spring Onion, Cucumber, Carrot Pancakes & Hoisin Sauce</div>
+              </div>
+            </div>
+            
+            <!-- Remaining items hidden by default -->
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=600&q=80" alt="Spare Ribs" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">4.</span> <span data-i18n="dish4">Spare Ribs</span></span>
+                  <span class="menu-item-price">€5.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish4_desc">With choice of sauce: BBQ / Salt Chili / Sweet Chili</div>
+              </div>
+            </div>
+            
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=600&q=80" alt="Prawn Tempura" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">5.</span> <span data-i18n="dish5">Prawn Tempura</span></span>
+                  <span class="menu-item-price">€6.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish5_desc">Deep Fried Balanced Prawns with Teriyaki sauce</div>
+              </div>
+            </div>
+            
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=600&q=80" alt="Crispy Prawn Toast" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">6.</span> <span data-i18n="dish6">Crispy Prawn Toast</span></span>
+                  <span class="menu-item-price">€6.50</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=600&q=80" alt="Chicken Satay" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">7.</span> <span data-i18n="dish7">Chicken Satay</span></span>
+                  <span class="menu-item-price">€6.50</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=600&q=80" alt="Crispy Calamari" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">8.</span> <span data-i18n="dish8">Crispy Calamari</span></span>
+                  <span class="menu-item-price">€6.70</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish8_desc">Deep fried calamari with Japanese breadcrumbs with Sweet Chili sauce</div>
+              </div>
+            </div>
+            
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=600&q=80" alt="Peking Duck Bao Buns" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">9.</span> <span data-i18n="dish9">Peking Duck Bao Buns</span></span>
+                  <span class="menu-item-price">€6.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish9_desc">Spring onions, pepper, cucumber, Peking sauce</div>
+              </div>
+            </div>
+            
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=600&q=80" alt="Crispy Pork Belly Bao Buns" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">10.</span> <span data-i18n="dish10">Crispy Pork Belly Bao Buns</span></span>
+                  <span class="menu-item-price">€6.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish10_desc">Asian stew salads, spring onion, crunchy onion chunks</div>
+              </div>
+            </div>
+            
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=600&q=80" alt="Prawn Tempura Bao Buns" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">11.</span> <span data-i18n="dish11">Prawn Tempura Bao Buns</span></span>
+                  <span class="menu-item-price">€6.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish11_desc">Pre-energies for chilli sauce, spring onion, cucumber, iceberg</div>
+              </div>
+            </div>
+          </div>
+          <button class="show-more-btn" data-category="starters" data-i18n="show_more">Show More</button>
+        </div>
+        
+        <!-- Soups -->
+        <div class="menu-category" id="soups">
+          <h3 class="menu-category-title" data-i18n="soups">Soups</h3>
+          <div class="menu-items">
+            <!-- First 3 items visible by default -->
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" alt="Tom Yum Soup" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">12.</span> <span data-i18n="dish12">Tom Yum Soup</span></span>
+                  <span class="menu-item-price">€5.00</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish12_desc">Tangy hot & sour soup</div>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" alt="Peking Hot & Sour Soup" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">13.</span> <span data-i18n="dish13">Peking Hot & Sour Soup</span></span>
+                  <span class="menu-item-price">€5.00</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish13_desc">Classic Chinese hot and sour soup</div>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" alt="Chicken Noodle Soup" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">14.</span> <span data-i18n="dish14">Chicken Noodle Soup</span></span>
+                  <span class="menu-item-price">€5.00</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish14_desc">Comforting chicken noodle soup</div>
+              </div>
+            </div>
+            
+            <!-- Remaining items hidden by default -->
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" alt="Vegetable Soup" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">15.</span> <span data-i18n="dish15">Vegetable Soup</span></span>
+                  <span class="menu-item-price">€4.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish15_desc">Light vegetable broth</div>
+              </div>
+            </div>
+          </div>
+          <button class="show-more-btn" data-category="soups" data-i18n="show_more">Show More</button>
+        </div>
+        
+        <!-- Tofu & Vegan Dishes -->
+        <div class="menu-category" id="tofu-vegan">
+          <h3 class="menu-category-title">Tofu & Vegan Dishes</h3>
+          <div class="menu-items">
+            <!-- First 3 items visible by default -->
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80" alt="Tofu Dishes" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">16.</span> <span data-i18n="dish16">Tofu Dishes</span></span>
+                  <span class="menu-item-price">€9.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish16_desc">TOFU mushroom & Oyster sauce / Black Bean sauce / Sweet & Sour sauce / Curry sauce</div>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80" alt="Vegan Dishes" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">17.</span> <span data-i18n="dish17">Vegan Dishes</span></span>
+                  <span class="menu-item-price">€10.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish17_desc">Ginger sauce / Black Bean sauce / Szechuan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Main Dishes -->
+        <div class="menu-category" id="main-dishes">
+          <h3 class="menu-category-title" data-i18n="main_dishes">Main Dishes</h3>
+          <div class="menu-items">
+            <!-- First 3 items visible by default -->
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80" alt="Curry Dishes" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">18.</span> <span data-i18n="dish18">Curry Dishes</span></span>
+                  <span class="menu-item-price">€10.50-€12.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish18_desc">All dishes are served with vegetables</div>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80" alt="Sweet & Sour Dishes" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">19.</span> <span data-i18n="dish19">Sweet & Sour Dishes</span></span>
+                  <span class="menu-item-price">€10.50-€12.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish19_desc">Includes a variety of ingredients</div>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80" alt="Szechuan Dishes" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">20.</span> <span data-i18n="dish20">Szechuan Dishes</span></span>
+                  <span class="menu-item-price">€11.50-€13.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish20_desc">Spicy Szechuan style dishes</div>
+              </div>
+            </div>
+            
+            <!-- Remaining items hidden by default -->
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80" alt="Oyster Sauce Dishes" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">21.</span> <span data-i18n="dish21">Oyster Sauce Dishes</span></span>
+                  <span class="menu-item-price">€10.50-€12.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish21_desc">All dishes are served with vegetables</div>
+              </div>
+            </div>
+            
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80" alt="Black Bean Sauce Dishes" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">22.</span> <span data-i18n="dish22">Black Bean Sauce Dishes</span></span>
+                  <span class="menu-item-price">€10.50-€12.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish22_desc">All dishes are served with vegetables</div>
+              </div>
+            </div>
+            
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80" alt="Teriyaki Dishes" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">23.</span> <span data-i18n="dish23">Teriyaki Dishes</span></span>
+                  <span class="menu-item-price">€11.00-€13.00</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish23_desc">All dishes are served with vegetables</div>
+              </div>
+            </div>
+            
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80" alt="Thai Dishes" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">24.</span> <span data-i18n="dish24">Thai Dishes</span></span>
+                  <span class="menu-item-price">€11.50-€13.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish24_desc">All dishes are served with vegetables</div>
+              </div>
+            </div>
+          </div>
+          <button class="show-more-btn" data-category="main-dishes" data-i18n="show_more">Show More</button>
+        </div>
+        
+        <!-- Noodles & Rice -->
+        <div class="menu-category" id="noodles-rice">
+          <h3 class="menu-category-title">Noodles & Rice</h3>
+          <div class="menu-items">
+            <!-- First 3 items visible by default -->
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80" alt="Chow Mein" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">25.</span> <span data-i18n="dish25">Chow Mein</span></span>
+                  <span class="menu-item-price">€9.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish25_desc">Choices include served with vegetables & Oyster sauce (Beef/Chicken), Served Dry or with Sauce</div>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80" alt="House Special Chow Mein" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">26.</span> <span data-i18n="dish26">House Special Chow Mein</span></span>
+                  <span class="menu-item-price">€11.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish26_desc">Our signature chow mein dish</div>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80" alt="Fried Rice" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">27.</span> <span data-i18n="dish27">Fried Rice</span></span>
+                  <span class="menu-item-price">€9.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish27_desc">All dishes include sweet and spicy vegetables</div>
+              </div>
+            </div>
+            
+            <!-- Remaining items hidden by default -->
+            <div class="menu-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80" alt="Far East Special Fried Rice" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">28.</span> <span data-i18n="dish28">Far East Special Fried Rice</span></span>
+                  <span class="menu-item-price">€11.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish28_desc">Our special fried rice with premium ingredients</div>
+              </div>
+            </div>
+          </div>
+          <button class="show-more-btn" data-category="noodles-rice" data-i18n="show_more">Show More</button>
+        </div>
+        
+        <!-- Sides -->
+        <div class="menu-category" id="sides">
+          <h3 class="menu-category-title">Side Dishes</h3>
+          <div class="menu-items">
+            <!-- First 3 items visible by default -->
+            <div class="menu-item">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">29.</span> <span data-i18n="dish29">Chips / Prawn Crackers</span></span>
+                  <span class="menu-item-price">€3.50 / €2.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish29_desc">Side dish options</div>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">30.</span> <span data-i18n="dish30">Egg Fried Rice / Vegetable Fried Rice</span></span>
+                  <span class="menu-item-price">€4.50 / €4.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish30_desc">Rice side options</div>
+              </div>
+            </div>
+            
+            <div class="menu-item">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">31.</span> <span data-i18n="dish31">Steamed Rice / Mixed Vegetables</span></span>
+                  <span class="menu-item-price">€3.50 / €4.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish31_desc">Simple side options</div>
+              </div>
+            </div>
+            
+            <!-- Remaining items hidden by default -->
+            <div class="menu-item hidden-item">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">32.</span> <span data-i18n="dish32">Chicken Wings with Sweet & Sour sauce</span></span>
+                  <span class="menu-item-price">€6.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="dish32_desc">6 pieces of chicken wings</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sushi Menu -->
+      <div class="menu-section hidden" id="sushi-menu">
+        <!-- Category Buttons -->
+        <div class="menu-category-buttons" id="sushi-category-buttons">
+          <button class="menu-category-button sushi-button active" data-category="hoso-maki">Hoso Maki Rolls</button>
+          <button class="menu-category-button sushi-button" data-category="maki-rolls">Maki Rolls</button>
+          <button class="menu-category-button sushi-button" data-category="nigiri-rolls">Nigiri Rolls</button>
+          <button class="menu-category-button sushi-button" data-category="hot-rolls">Hot Rolls</button>
+          <button class="menu-category-button sushi-button" data-category="sushi-platters">Sushi Platters</button>
+          <button class="menu-category-button sushi-button" data-category="allergy-info">Allergy Info</button>
+        </div>
+        
+        <!-- Hoso Maki Rolls -->
+        <div class="menu-category active sushi-category" id="hoso-maki">
+          <h3 class="menu-category-title" data-i18n="hoso_maki">Hoso Maki Rolls (All 8pcs)</h3>
+          <div class="menu-items">
+            <!-- First 3 items visible by default -->
+            <div class="menu-item sushi-item">
+              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80" alt="Far East California Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">1.</span> <span data-i18n="sushi101">Far East California Roll</span></span>
+                  <span class="menu-item-price">€9.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi101_desc">Cucumber, crabstick, carrot, avocado with caviar & Japanese mayo on top</div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item">
+              <img src="https://images.unsplash.com/photo-1617196035154-1e1e6b01b5fa?auto=format&fit=crop&w=600&q=80" alt="Dragon Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">2.</span> <span data-i18n="sushi102">Dragon Roll</span></span>
+                  <span class="menu-item-price">€12.00</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi102_desc">Cream cheese, tempura prawn, cucumber with avocado, eel sauce & sesame seeds on top</div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item">
+              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80" alt="Crunchy Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">3.</span> <span data-i18n="sushi103">Crunchy Roll</span></span>
+                  <span class="menu-item-price">€11.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi103_desc">Tempura prawn, cucumber, avocado with tempura flakes on top</div>
+              </div>
+            </div>
+            
+            <!-- Remaining items hidden by default -->
+            <div class="menu-item sushi-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1617196035154-1e1e6b01b5fa?auto=format&fit=crop&w=600&q=80" alt="Ebi Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">4.</span> <span data-i18n="sushi104">Ebi Roll</span></span>
+                  <span class="menu-item-price">€11.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi104_desc">Ebi prawn, avocado, cucumber with tempura flakes on top</div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80" alt="Spicy Tuna Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">5.</span> <span data-i18n="sushi105">Spicy Tuna Roll</span></span>
+                  <span class="menu-item-price">€12.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi105_desc">Fresh chopped tuna, cucumber, spicy mayo, togarashi, fresh onion (sesame seeds & togarashi on top)</div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1617196035154-1e1e6b01b5fa?auto=format&fit=crop&w=600&q=80" alt="Vegetable Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">6.</span> <span data-i18n="sushi106">Vegetable Roll</span></span>
+                  <span class="menu-item-price">€8.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi106_desc">Avocado, mango, carrot, cucumber (sesame seeds on top)</div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80" alt="Philadelphia Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">7.</span> <span data-i18n="sushi107">Philadelphia Roll</span></span>
+                  <span class="menu-item-price">€11.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi107_desc">Cream cheese, avocado, fresh salmon (fresh salmon on top)</div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1617196035154-1e1e6b01b5fa?auto=format&fit=crop&w=600&q=80" alt="Spicy Salmon Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">8.</span> <span data-i18n="sushi108">Spicy Salmon Roll</span></span>
+                  <span class="menu-item-price">€12.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi108_desc">Salmon tempura, avocado, cream cheese (fresh salmon, spicy mayo, caviar & chives on top)</div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80" alt="Salmon Teriyaki Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">9.</span> <span data-i18n="sushi109">Salmon Teriyaki Roll</span></span>
+                  <span class="menu-item-price">€12.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi109_desc">Fried salmon, avocado, carrot (caviar, chives & teriyaki sauce on top)</div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1617196035154-1e1e6b01b5fa?auto=format&fit=crop&w=600&q=80" alt="Chef's Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">10.</span> <span data-i18n="sushi110">Chef's Roll</span></span>
+                  <span class="menu-item-price">€13.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi110_desc">Crabstick, carrot, avocado, cucumber, mango, cream cheese (crab shell, caviar & spring onion on top)</div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80" alt="Far East Caterpillar Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">11.</span> <span data-i18n="sushi111">Far East Caterpillar Roll</span></span>
+                  <span class="menu-item-price">€13.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi111_desc">Cream cheese, eel, cucumber, ebi prawn (avocado, eel sauce & caviar on top)</div>
+              </div>
+            </div>
+          </div>
+          <button class="show-more-btn" data-category="hoso-maki" data-i18n="show_more">Show More</button>
+        </div>
+        
+        <!-- Maki Rolls -->
+        <div class="menu-category sushi-category" id="maki-rolls">
+          <h3 class="menu-category-title" data-i18n="maki_rolls">Maki Rolls (All 6pcs)</h3>
+          <div class="menu-items">
+            <!-- First 3 items visible by default -->
+            <div class="menu-item sushi-item">
+              <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=600&q=80" alt="Tuna Maki" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">12.</span> <span data-i18n="sushi112">Tuna Maki</span></span>
+                  <span class="menu-item-price">€5.50</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Cucumber Maki" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">13.</span> <span data-i18n="sushi113">Cucumber Maki</span></span>
+                  <span class="menu-item-price">€3.00</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item">
+              <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=600&q=80" alt="Salmon Maki" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">14.</span> <span data-i18n="sushi114">Salmon Maki</span></span>
+                  <span class="menu-item-price">€5.00</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Remaining items hidden by default -->
+            <div class="menu-item sushi-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Crabstick Maki" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">15.</span> <span data-i18n="sushi115">Crabstick Maki</span></span>
+                  <span class="menu-item-price">€4.00</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item hidden-item">
+              <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=600&q=80" alt="Avocado Maki" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">16.</span> <span data-i18n="sushi116">Avocado Maki</span></span>
+                  <span class="menu-item-price">€4.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="show-more-btn" data-category="maki-rolls" data-i18n="show_more">Show More</button>
+        </div>
+        
+        <!-- Nigiri Rolls -->
+        <div class="menu-category sushi-category" id="nigiri-rolls">
+          <h3 class="menu-category-title" data-i18n="nigiri_rolls">Nigiri Rolls (All 3pcs)</h3>
+          <div class="menu-items">
+            <!-- First 3 items visible by default -->
+            <div class="menu-item sushi-item">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">17.</span> <span data-i18n="sushi117">Avocado Nigiri</span></span>
+                  <span class="menu-item-price">€3.00</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">18.</span> <span data-i18n="sushi118">Salmon Nigiri</span></span>
+                  <span class="menu-item-price">€3.00</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">19.</span> <span data-i18n="sushi119">Tuna Nigiri</span></span>
+                  <span class="menu-item-price">€4.00</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Remaining items hidden by default -->
+            <div class="menu-item sushi-item hidden-item">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">20.</span> <span data-i18n="sushi120">Crabstick Nigiri</span></span>
+                  <span class="menu-item-price">€3.00</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item hidden-item">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">21.</span> <span data-i18n="sushi121">Eel Nigiri</span></span>
+                  <span class="menu-item-price">€4.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Hot Rolls -->
+        <div class="menu-category sushi-category" id="hot-rolls">
+          <h3 class="menu-category-title" data-i18n="hot_rolls">Hot Rolls (All 8pcs)</h3>
+          <div class="menu-items">
+            <!-- First 3 items visible by default -->
+            <div class="menu-item sushi-item">
+              <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=600&q=80" alt="Salmon Tempura Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">22.</span> <span data-i18n="sushi122">Salmon Tempura Roll</span></span>
+                  <span class="menu-item-price">€11.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi122_desc">Salmon tempura, avocado (tempura flakes, sesame seeds & eel sauce on top)</div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item">
+              <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=600&q=80" alt="Crispy Tuna Roll" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">23.</span> <span data-i18n="sushi123">Crispy Tuna Roll</span></span>
+                  <span class="menu-item-price">€12.50</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi123_desc">Tuna, avocado (tempura flakes & spicy mayo on top)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Sushi Platters -->
+        <div class="menu-category sushi-category" id="sushi-platters">
+          <h3 class="menu-category-title" data-i18n="sushi_platters">Sushi Platters</h3>
+          <div class="menu-items">
+            <!-- First 3 items visible by default -->
+            <div class="menu-item sushi-item">
+              <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=600&q=80" alt="Fusion Combination" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">24.</span> <span data-i18n="sushi124">Fusion Combination 24pcs</span></span>
+                  <span class="menu-item-price">€32.00</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi124_desc">Far East California Rolls, Vegetable Rolls, Crunchy Rolls</div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item">
+              <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=600&q=80" alt="Far East Combination" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">25.</span> <span data-i18n="sushi125">Far East Combination 32pcs</span></span>
+                  <span class="menu-item-price">€42.00</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi125_desc">Chef's Rolls, Vegetable Rolls, Spicy Salmon Rolls, Ebi Rolls</div>
+              </div>
+            </div>
+            
+            <div class="menu-item sushi-item">
+              <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=600&q=80" alt="Combination 48pcs" class="menu-item-img">
+              <div class="menu-item-content">
+                <div class="menu-item-title">
+                  <span><span class="menu-item-number">26.</span> <span data-i18n="sushi126">Combination 48pcs</span></span>
+                  <span class="menu-item-price">€58.00</span>
+                </div>
+                <div class="menu-item-desc" data-i18n="sushi126_desc">Far East California Rolls, Vegetable Rolls, Spicy Salmon Rolls, Ebi Rolls, Philadelphia Rolls, Far East Caterpillar Rolls</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Allergy Information -->
+        <div class="menu-category" id="allergy-info">
+          <h3 class="menu-category-title">Allergy Information</h3>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-content">
+                <div class="menu-item-desc">
+                  <p>Please inform our staff if you have any of the following food intolerances:</p>
+                  <ul style="columns: 2; list-style-type: none; padding-left: 0;">
+                    <li>• Milk</li>
+                    <li>• Eggs</li>
+                    <li>• Peanuts</li>
+                    <li>• Fish</li>
+                    <li>• Shellfish</li>
+                    <li>• Wheat</li>
+                    <li>• Nuts</li>
+                    <li>• Soy</li>
+                    <li>• Celery</li>
+                    <li>• Sesame seeds</li>
+                    <li>• Mustard</li>
+                    <li>• Lupin</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact" aria-label="Contact">
+      <h2 data-i18n="contact">Contact Us</h2>
+      <div style="margin-top:16px; display:grid; gap:24px; grid-template-columns: repeat(auto-fit,minmax(300px,1fr));">
+        <div>
+          <p><strong><i class="fas fa-phone-alt"></i> Phone:</strong> <a href="tel:+35723962220">+357 23 962220</a></p>
+          <p><strong><i class="fas fa-envelope"></i> Email:</strong> <a href="mailto:sthfareast@outlook.com">sthfareast@outlook.com</a></p>
+          <p><strong><i class="fas fa-map-marker-alt"></i> Address:</strong> Varosion 112, Deryneia, Cyprus</p>
+          <div class="divider"></div>
+          <p><strong><i class="fas fa-clock"></i> Opening Hours:</strong></p>
+          <p>Tuesday - Sunday: 17:00 - 22:00</p>
+          <div class="divider"></div>
+          <p><strong>Follow us:</strong></p>
+          <div style="display:flex; gap:12px; margin-top:12px;">
+            <a href="https://www.instagram.com/far_east_chinese/" target="_blank" aria-label="Instagram" title="Instagram" style="display:inline-flex;align-items:center;gap:6px; background:var(--primary-light); padding:8px 12px; border-radius:8px; color:var(--primary); font-weight:600;">
+              <i class="fab fa-instagram"></i>
+              <span>Instagram</span>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61553933070480" target="_blank" aria-label="Facebook" title="Facebook" style="display:inline-flex;align-items:center;gap:6px; background:var(--primary-light); padding:8px 12px; border-radius:8px; color:var(--primary); font-weight:600;">
+              <i class="fab fa-facebook-f"></i>
+              <span>Facebook</span>
+            </a>
+            <a href="https://www.tiktok.com/@far_east_chinese" target="_blank" aria-label="TikTok" title="TikTok" style="display:inline-flex;align-items:center;gap:6px; background:var(--primary-light); padding:8px 12px; border-radius:8px; color:var(--primary); font-weight:600;">
+              <i class="fab fa-tiktok"></i>
+              <span>TikTok</span>
+            </a>
+          </div>
+        </div>
+        <div>
+          <form id="contact-form" action="https://formspree.io/f/xrblyoaw" method="POST">
+            <div class="field">
+              <label for="name">Your Name</label>
+              <input id="name" type="text" name="name" placeholder="John Smith" required />
+            </div>
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input id="email" type="email" name="email" placeholder="your@email.com" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input id="phone" type="tel" name="phone" placeholder="+357 99 123456" />
+            </div>
+            <div class="field">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" rows="4" placeholder="Hi, I'd like to ask about..." required></textarea>
+            </div>
+            <input type="hidden" name="_language" value="en" />
+            <button type="submit" class="btn" style="width:100%; justify-content:center; padding:12px;">
+              <span id="submit-text">Send Message</span>
+              <span id="submit-loader" class="loader hidden"></span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section id="location" class="location" aria-label="Location">
+      <h2>Our Location</h2>
+      <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:24px;">
+        <div style="flex:1; min-width:280px;">
+          <p><strong>The Far East</strong></p>
+          <p>Varosion 112, Deryneia, Cyprus</p>
+          <div class="divider"></div>
+          <p><strong>Opening Hours:</strong></p>
+          <p>Monday: Closed</p>
+          <p>Tuesday - Sunday: 17:00 - 22:00</p>
+          <div class="divider"></div>
+          <p><strong>Delivery Areas:</strong></p>
+          <p>Vrysoules, Avgorou, Frenaros</p>
+          <div style="margin-top:20px;">
+            <a target="_blank" href="https://www.google.com/maps/place/The+far+east/@35.0840518,33.8744048,18z/data=!4m6!3m5!1s0x14dfcb5d12b19a83:0xee265d3ad74623f0!8m2!3d35.0835448!4d33.8772265!16s%2Fg%2F11ldm2jl6l?entry=ttu&g_ep=EgoyMDI1MDczMC4wIKXMDSoASAFQAw%3D%3D" class="btn" style="display:inline-flex;align-items:center;gap:8px;">
+              <i class="fas fa-directions"></i> Get Directions
+            </a>
+          </div>
+        </div>
+        <div style="flex:2; min-width:320px;">
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3276.475069235271!2d33.8744048!3d35.0840518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14dfcb5d12b19a83%3A0xee265d3ad74623f0!2sThe%20far%20east!5e0!3m2!1sen!2s!4v1712345678901!5m2!1sen!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="bottom-nav" aria-label="Mobile Navigation">
+    <a href="#home" aria-label="Home">
+      <div class="icon"><i class="fas fa-home"></i></div>
+      <div class="text" data-i18n="home">Home</div>
+    </a>
+    <a href="#menu" aria-label="Menu">
+      <div class="icon"><i class="fas fa-utensils"></i></div>
+      <div class="text" data-i18n="menu">Menu</div>
+    </a>
+    <a href="tel:+35723962220" aria-label="Call us">
+      <div class="icon"><i class="fas fa-phone-alt"></i></div>
+      <div class="text" data-i18n="call_us">Call</div>
+    </a>
+    <a href="#location" aria-label="Location">
+      <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+      <div class="text" data-i18n="location">Location</div>
+    </a>
+  </nav>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toast-message">Message sent successfully!</span>
+  </div>
+
+  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  /* Lightweight translation table - extend as needed */
+  const translations = {
+    en: {
+      show_more: "Show More",
+      show_less: "Show Less",
+      lang_switched: "Language switched to English"
+    },
+    el: {
+      show_more: "Δείτε περισσότερα",
+      show_less: "Δείτε λιγότερα",
+      lang_switched: "Η γλώσσα άλλαξε σε Ελληνικά"
+    }
+  };
+
+  function safeSetText(el, text) {
+    // Only replace visible text nodes, preserve child elements like icons
+    if (!el) return;
+    // If element has no child elements, safe to replace textContent
+    if (el.children.length === 0) {
+      el.textContent = text;
+      return;
+    }
+    // Otherwise replace first text node child or a [data-i18n-inner] flagged child
+    let replaced = false;
+    for (const node of Array.from(el.childNodes)) {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0) {
+        node.textContent = text;
+        replaced = true;
+        break;
+      }
+    }
+    if (!replaced) {
+      // fallback: set textContent (may remove icons) - last resort
+      el.textContent = text;
+    }
+  }
+
+  function applyTranslations(lang) {
+    if (!translations[lang]) lang = 'en';
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (!key) return;
+      const val = (translations[lang] && translations[lang][key]) || translations['en'][key];
+      if (typeof val === 'string') {
+        safeSetText(el, val);
+      }
+    });
+
+    // update show-more buttons text and expanded state
+    document.querySelectorAll('.show-more-btn').forEach(btn => {
+      btn.dataset.expanded = 'false';
+      btn.textContent = translations[lang].show_more || translations['en'].show_more;
+    });
+  }
+
+  // Initialize language from html lang or default
+  const initialLang = document.documentElement.lang || 'en';
+  applyTranslations(initialLang);
+
+  // Language switcher buttons (if present)
+  const btnEn = document.getElementById('btn-en');
+  const btnEl = document.getElementById('btn-el');
+  function setLangButtonsActive(lang) {
+    if (btnEn) {
+      btnEn.classList.toggle('active', lang === 'en');
+      btnEn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+    }
+    if (btnEl) {
+      btnEl.classList.toggle('active', lang === 'el');
+      btnEl.setAttribute('aria-pressed', lang === 'el' ? 'true' : 'false');
+    }
+  }
+  setLangButtonsActive(initialLang);
+
+  if (btnEn) {
+    btnEn.addEventListener('click', () => {
+      applyTranslations('en');
+      setLangButtonsActive('en');
+      // optional small toast if you have a toast element
+      const t = document.getElementById('toast');
+      if (t) { t.textContent = translations.en.lang_switched || ''; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 1600); }
+    });
+  }
+  if (btnEl) {
+    btnEl.addEventListener('click', () => {
+      applyTranslations('el');
+      setLangButtonsActive('el');
+      const t = document.getElementById('toast');
+      if (t) { t.textContent = translations.el.lang_switched || ''; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 1600); }
+    });
+  }
+
+  /* ===== Tabs (Chinese / Sushi) ===== */
+  document.querySelectorAll('.menu-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      if (!target) return;
+      // update tabs active state
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      // show/hide sections
+      document.querySelectorAll('.menu-section').forEach(section => {
+        section.classList.add('hidden');
+        section.setAttribute('aria-hidden','true');
+      });
+      const el = document.getElementById(target + '-menu');
+      if (el) {
+        el.classList.remove('hidden');
+        el.setAttribute('aria-hidden','false');
+        // ensure first category button active inside the now-visible section
+        const catBtns = el.querySelectorAll('.menu-category-button');
+        if (catBtns.length) {
+          const active = Array.from(catBtns).find(b => b.classList.contains('active')) || catBtns[0];
+          active.click?.();
+        }
+      }
+    });
+
+    // keyboard support
+    tab.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tab.click(); }
+    });
+  });
+
+  /* ===== Category Buttons ===== */
+  document.querySelectorAll('.menu-category-buttons').forEach(container => {
+    const buttons = container.querySelectorAll('.menu-category-button');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const parentSection = container.closest('.menu-section') || document;
+        parentSection.querySelectorAll('.menu-category').forEach(cat => cat.classList.remove('active'));
+        const targetId = btn.dataset.category;
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.classList.add('active');
+          // scroll small offset to show heading (mobile)
+          if (window.innerWidth <= 850) {
+            targetEl.scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        }
+      });
+
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+      });
+    });
+  });
+
+  /* ===== Show More / Show Less ===== */
+  document.querySelectorAll('.show-more-btn').forEach(btn => {
+    // ensure hidden items are hidden initially
+    const catId = btn.dataset.category;
+    const cat = document.getElementById(catId);
+    if (cat) {
+      cat.querySelectorAll('.hidden-item').forEach(h => {
+        // use display:flex if layout expects that, otherwise none
+        h.style.display = 'none';
+      });
+    }
+    btn.dataset.expanded = 'false';
+    btn.textContent = (translations[document.documentElement.lang] || translations.en).show_more;
+
+    btn.addEventListener('click', () => {
+      const lang = document.documentElement.lang || 'en';
+      const catId = btn.dataset.category;
+      const cat = document.getElementById(catId);
+      if (!cat) return;
+      const hiddenItems = Array.from(cat.querySelectorAll('.hidden-item'));
+      const isExpanded = btn.dataset.expanded === 'true';
+      if (isExpanded) {
+        hiddenItems.forEach(h => { h.style.display = 'none'; });
+        btn.textContent = (translations[lang] || translations.en).show_more;
+        btn.dataset.expanded = 'false';
+        // scroll back to category for better UX
+        cat.scrollIntoView({behavior:'smooth', block:'start'});
+      } else {
+        hiddenItems.forEach(h => {
+          // try to detect layout: if a menu-item uses flex by default, show as flex
+          const display = window.getComputedStyle(h).display;
+          h.style.display = display && display !== 'none' ? display : 'flex';
+        });
+        btn.textContent = (translations[lang] || translations.en).show_less;
+        btn.dataset.expanded = 'true';
+      }
+    });
+
+    btn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); } });
+  });
+
+  /* ===== Scroll spy for nav highlight ===== */
+  (function initScrollSpy(){
+    const sections = Array.from(document.querySelectorAll('main section[id], section[id]'));
+    if (!sections.length) return;
+    const navLinks = Array.from(document.querySelectorAll('.nav-link, .bottom-link'));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            const href = link.getAttribute('href') || '';
+            const ds = link.dataset.section || '';
+            const isActive = href === '#' + id || ds === id;
+            link.classList.toggle('active', isActive);
+          });
+        }
+      });
+    }, { root: null, rootMargin: '-35% 0px -50% 0px', threshold: 0 });
+    sections.forEach(s => observer.observe(s));
+  })();
+
+  /* ===== Small accessibility: allow Enter/Space on interactive elements ===== */
+  document.addEventListener('keydown', function(e){
+    const el = document.activeElement;
+    if (!el) return;
+    if (['Enter',' '].includes(e.key) && (el.classList.contains('menu-tab') || el.classList.contains('menu-category-button') || el.classList.contains('show-more-btn'))) {
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
+</script>
+
+
+  <script>
+    // Smooth scroll and highlight active link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Translations
+    const translations = {
+      en: {
+        home: "Home",
+        about: "About",
+        menu: "Menu",
+        contact: "Contact",
+        location: "Location",
+        call_us_btn: "Call Us",
+        title: "Far East Vrysoules",
+        find_us: "Find Us",
+        see_menu: "See Menu",
+        welcome: "Welcome",
+        headline: "Taste the Far East in Vrysoules",
+        our_menu: "Our Menu",
+        note_translate: "Available in English & Greek",
+        starters: "Starters",
+        soups: "Soups",
+        main_dishes: "Main Dishes",
+        show_more: "Show More"
+      },
+      el: {
+        home: "Αρχική",
+        about: "Σχετικά",
+        menu: "Μενού",
+        contact: "Επικοινωνία",
+        location: "Τοποθεσία",
+        call_us_btn: "Καλέστε μας",
+        title: "Φαρ Ιστ Βρυσούλες",
+        find_us: "Βρείτε μας",
+        see_menu: "Δείτε το Μενού",
+        welcome: "Καλώς ήρθατε",
+        headline: "Γευτείτε την Άπω Ανατολή στις Βρυσούλες",
+        our_menu: "Το Μενού μας",
+        note_translate: "Διαθέσιμο στα Αγγλικά & Ελληνικά",
+        starters: "Ορεκτικά",
+        soups: "Σούπες",
+        main_dishes: "Κυρίως Πιάτα",
+        show_more: "Δείτε περισσότερα"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-el').classList.toggle('active', lang === 'el');
+    }
+
+    document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
+    document.getElementById('btn-el').addEventListener('click', () => setLanguage('el'));
+  </script>
+
+</body>
+</html>
