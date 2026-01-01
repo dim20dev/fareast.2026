@@ -721,7 +721,20 @@
       .bottom-nav .text {
         font-size: 0.6rem;
       }
-    }
+    /* ✅ FIX bottom nav buttons on mobile */
+.bottom-nav,
+.bottom-navbar,
+nav {
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99999 !important;
+}
+
+body {
+  padding-bottom: 90px;
+} }
   </style>
 </head>
 <body>
