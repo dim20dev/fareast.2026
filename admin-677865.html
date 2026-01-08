@@ -1,55 +1,66 @@
 <!DOCTYPE html>
 <html>
-<head>const supabaseUrl = 'YOUR_SUPABASE_URL';      // replace this
-const supabaseKey = 'YOUR_SUPABASE_ANON_KEY'; // replace this
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-  <title>Fareast Admin Login</title>
+<head>
+  <title>Fareast Admin Panel</title>
   <style>
-    body { font-family: sans-serif; }
-    #admin-dashboard { display:none; margin-top:20px; }
+    body { font-family: sans-serif; margin:20px; }
+    #admin-dashboard, #user-edit { display:none; margin-top:20px; }
+    input { margin:2px; }
+    button { margin:2px; }
+    hr { margin:20px 0; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body>
 
-  <h1>Admin Login</h1>
+  <h1>Fareast Admin Login</h1>
+
+  <!-- LOGIN FORM -->
   <div id="login-form">
     <input type="email" id="email" placeholder="Email">
     <input type="password" id="password" placeholder="Password">
     <button id="login-btn">Login</button>
   </div>
 
+  <!-- ADMIN DASHBOARD -->
   <div id="admin-dashboard">
     <h2>Admin Panel</h2>
+
+    <!-- MENU EDIT -->
     <div id="menu-edit"></div>
     <button onclick="addDish()">Add Dish</button>
     <button onclick="addCategory()">Add Category</button>
+
     <hr>
+
+    <!-- USERS (OWNER ONLY) -->
     <div id="user-edit"></div>
     <button onclick="addAdmin()">Add Admin (Owner only)</button>
   </div>
 
   <script>
-    // Supabase connection
+    // ----------------------------
+    // SUPABASE INIT
+    // ----------------------------
     const supabaseUrl = 'https://ijxmmvxojryxxsrouwyy.supabase.co';
     const supabaseKey = 'sb_publishable_nDl9wCh4xuy4gswgBkvxKA_NIiO9nH4';
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    // LOGIN
+    // ----------------------------
+    // LOGIN LOGIC
+    // ----------------------------
     document.getElementById('login-btn').addEventListener('click', async () => {
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) return alert(error.message);
+      if(error) return alert(error.message);
 
-      const { data: roles } = await supabase.from('user_roles')
-        .select('*')
-        .eq('user_id', data.user.id);
-
+      const { data: roles } = await supabase.from('user_roles').select('*').eq('user_id', data.user.id);
       if(!roles.length) return alert("No role assigned!");
       const role = roles[0].role;
 
+      // hide login, show dashboard
       document.getElementById('login-form').style.display = 'none';
       document.getElementById('admin-dashboard').style.display = 'block';
 
@@ -57,16 +68,20 @@ const supabase = supabase.createClient(supabaseUrl, supabaseKey);
       if(role === 'owner') loadUsersAdmin();
     });
 
-    // Load menu for admin editing
+    // ----------------------------
+    // LOAD MENU FOR ADMIN EDITING
+    // ----------------------------
     async function loadMenuAdmin() {
       const { data: categories } = await supabase.from('categories').select('*');
       const { data: dishes } = await supabase.from('dishes').select('*');
+
       const menuDiv = document.getElementById('menu-edit');
       menuDiv.innerHTML = '<h3>Edit Menu</h3>';
 
       categories.forEach(cat => {
         const catDiv = document.createElement('div');
         catDiv.innerHTML = `<h4>${cat.name}</h4>`;
+
         const catDishes = dishes.filter(d => d.category_id === cat.id);
         catDishes.forEach(dish => {
           const dishDiv = document.createElement('div');
@@ -78,36 +93,41 @@ const supabase = supabase.createClient(supabaseUrl, supabaseKey);
           `;
           catDiv.appendChild(dishDiv);
         });
+
         menuDiv.appendChild(catDiv);
       });
     }
 
-    async function updateDish(dishId){
+    // ----------------------------
+    // CRUD FUNCTIONS
+    // ----------------------------
+    async function updateDish(dishId) {
       const title = document.getElementById(`title-${dishId}`).value;
       const price = document.getElementById(`price-${dishId}`).value;
+
       const { error } = await supabase.from('dishes').update({title, price}).eq('id', dishId);
       if(error) return alert(error.message);
       loadMenuAdmin();
     }
 
-    async function deleteDish(dishId){
+    async function deleteDish(dishId) {
       if(!confirm("Delete this dish?")) return;
       const { error } = await supabase.from('dishes').delete().eq('id', dishId);
       if(error) return alert(error.message);
       loadMenuAdmin();
     }
 
-    async function addDish(){
+    async function addDish() {
       const title = prompt("Dish name:");
       const price = prompt("Price:");
-      const category_id = prompt("Category ID:");
+      const category_id = prompt("Category ID:"); // enter ID from your categories table
       if(!title||!price||!category_id) return alert("Fill all fields");
       const { error } = await supabase.from('dishes').insert([{title, price, category_id}]);
       if(error) return alert(error.message);
       loadMenuAdmin();
     }
 
-    async function addCategory(){
+    async function addCategory() {
       const name = prompt("Category name:");
       if(!name) return;
       const { error } = await supabase.from('categories').insert([{name}]);
@@ -115,20 +135,23 @@ const supabase = supabase.createClient(supabaseUrl, supabaseKey);
       loadMenuAdmin();
     }
 
-    // OWNER: manage users
-    async function loadUsersAdmin(){
+    // ----------------------------
+    // OWNER PANEL - MANAGE USERS
+    // ----------------------------
+    async function loadUsersAdmin() {
       const { data: users } = await supabase.from('users').select('*');
       const { data: roles } = await supabase.from('user_roles').select('*');
+
       const userDiv = document.getElementById('user-edit');
       userDiv.innerHTML = '<h3>Users</h3>';
-      users.forEach(user=>{
+      users.forEach(user => {
         const role = roles.find(r=>r.user_id===user.id)?.role || 'none';
         userDiv.innerHTML += `<p>${user.email} - ${role}</p>`;
       });
     }
 
-    async function addAdmin(){
-      const email = prompt("Admin email:");
+    async function addAdmin() {
+      const email = prompt("User email:");
       const role = prompt("Role: admin or owner");
       if(!email||!role) return;
       const { data: user } = await supabase.from('users').select('*').eq('email', email).single();
